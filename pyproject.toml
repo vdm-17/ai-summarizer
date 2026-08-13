@@ -1,0 +1,68 @@
+[project]
+name = "ai-summarizer"
+version = "0.1.0"
+description = "The utility for summarizing a source content using AI."
+readme = "README.md"
+authors = [
+    { name = "vdm-17", email = "vasiliydolgih17m@gmail.com" }
+]
+requires-python = ">=3.14,<3.15"
+dependencies = [
+    "keyring>=25.7.0",
+    "langcodes[data]>=3.5.1",
+    "markdown-it-py>=4.2.0",
+    "openai>=2.46.0",
+    "openai-agents>=0.18.3",
+    "pillow>=12.1.1",
+    "platformdirs>=4.11.0",
+    "pwinput>=1.0.3",
+    "pydantic>=2.12.5",
+    "pymupdf4llm>=1.28.0",
+    "pytesseract>=0.3.13",
+    "pyyaml>=6.0.3",
+    "rapidocr-onnxruntime~=1.2",
+    "requests>=2.32.5",
+    "tiktoken>=0.12.0",
+    "tqdm>=4.67.3",
+]
+
+[dependency-groups]
+dev = [
+    "basedpyright>=1.39.3",
+    "prek>=0.3.12",
+    "pyinstaller>=6.21.0",
+    "python-dotenv>=1.2.2",
+    "ruff>=0.15.12",
+]
+
+[project.scripts]
+ai-summarizer = "ai_summarizer.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.11.17,<0.12"]
+build-backend = "uv_build"
+
+[tool.uv]
+package = true
+
+[tool.pyright]
+include = ["src", "bundle_builder", "installer_builder"]
+exclude = ["**/__pycache__", "**/node_modules", "**/.*", ".venv", "build", "dist", "bundle_builder/vcpkg"]
+typeCheckingMode = "standard"
+reportMissingImports = true
+reportUnusedVariable = true
+reportUnusedImport = true
+reportOptionalMemberAccess = true
+reportOptionalSubscript = true
+
+[tool.ruff]
+extend-exclude = ["bundle_builder/vcpkg"]
+line-length = 79
+
+[tool.ruff.lint]
+extend-select = ["E501", "I"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+docstring-code-format = true

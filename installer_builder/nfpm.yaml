@@ -1,0 +1,26 @@
+name: ai-summarizer
+arch: amd64
+platform: linux
+version: ${VERSION}
+release: "1"
+
+section: utils
+priority: optional
+maintainer: vdm-17 <vasiliydolgih17m@gmail.com>
+description: >-
+  The utility for summarizing a source content using AI.
+license: MIT
+
+contents:
+  - src: ../dist/ai-summarizer/
+    dst: /usr/lib/ai-summarizer
+    type: tree
+
+  - src: /usr/lib/ai-summarizer/ai-summarizer
+    dst: /usr/bin/ai-summarizer
+    type: symlink
+
+  - src: ../LICENSE.txt
+    dst: /usr/share/doc/ai-summarizer/copyright
+    file_info:
+      mode: 0644

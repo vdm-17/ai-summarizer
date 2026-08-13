@@ -1,0 +1,22 @@
+services:
+  app:
+    build: .
+    secrets:
+      - llm_api_key
+    environment:
+      LLM_API_KEY_FILE: /run/secrets/llm_api_key
+      CONFIG_PATH: /home/app/config.ini
+    env_file:
+      - path: ./app.env
+        required: false
+    volumes:
+      - ${CONFIG_PATH:-./config.ini}:/home/app/config.ini:ro
+      - ./logs:/home/app/logs:rw
+      - ./data:/home/app/data:ro
+      - ./output:/home/app/output:rw
+      - tessdata:/home/app/tessdata:rw
+secrets:
+  llm_api_key:
+    file: ./secrets/llm_api_key.txt
+volumes:
+  tessdata:
