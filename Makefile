@@ -1,5 +1,4 @@
 APP_ARGS ?=
-COMMIT_MESSAGE ?=
 OS ?= $(shell echo %OS%)
 
 ifeq ($(OS),Windows_NT)
